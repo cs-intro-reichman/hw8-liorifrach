@@ -31,7 +31,7 @@ public class Network {
      *  Notice that the method receives a String, and returns a User object. */
     public User getUser(String name) {
         for(int i=0; i<userCount; i++){
-            if(users[i].getClass().equals(name)){
+            if(users[i].getName().equalsIgnoreCase(name)){
                 return users[i];
             }
         }
@@ -67,21 +67,22 @@ public class Network {
      *  the user that has the maximal mutual number of followees as the user with the given name. */
     public String recommendWhoToFollow(String name) {
        int maxMutal = -1;
-       String recommendedUser = null; 
-       User user = getUser(name);
+       int userindex = -1;
        
        for(int i=0; i< userCount; i++){
-        User candidate = users[i];
-        if(!candidate.getName().equals(name)){
-            int mutual = user.countMutual(candidate);
+        if(!users[i].getName().equalsIgnoreCase(name)){
+            User candidate = users[i];
+            int mutual = candidate.countMutual(getUser(name));
             if(mutual > maxMutal){
                 maxMutal = mutual;
-                recommendedUser = candidate.getName();
-             }
-        }
+                userindex = i;
+            }
+        }   
        }
-
-        return recommendedUser;
+       if (userindex == -1) {
+        return null;
+    }
+       return users[userindex].getName();
     }
 
     /** Computes and returns the name of the most popular user in this network: 
