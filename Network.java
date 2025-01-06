@@ -127,9 +127,11 @@ public class Network {
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
         StringBuilder sb = new StringBuilder("Network:\n");
-        for(int i=0; i< userCount; i++){
-            sb.append(users[i].toString().trim()).append("\n");
+    for (int i = 0; i < userCount; i++) {
+        sb.append(users[i].toString());
+        if (i < userCount - 1) {  // אם זה לא המשתמש האחרון, נוסיף '\n'
+            sb.append("\n");
         }
-        return sb.toString().trim();
     }
+    return sb.toString();
 }
