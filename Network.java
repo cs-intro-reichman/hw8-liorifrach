@@ -63,10 +63,15 @@ public class Network {
     public boolean addFollowee(String name1, String name2) {
         User follower = getUser(name1);
         User followee = getUser(name2);
-        if(followee == null || follower == null || follower.follows(name2)){
-            return false; 
+        if(followee == null || follower == null){
+            return false;
         }
-        return follower.addFollowee(name2);
+
+        if(follower.follows(name2)){
+            return false;
+        }
+
+         return (follower.addFollowee(name2));
     }
     
     /** For the user with the given name, recommends another user to follow. The recommended user is
@@ -122,7 +127,7 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb = new StringBuilder("Network:\n");
         for(int i=0; i< userCount; i++){
             sb.append(users[i].toString()).append("\n");
         }
