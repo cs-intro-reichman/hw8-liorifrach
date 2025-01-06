@@ -304,7 +304,7 @@ public class TestHandler {
     public boolean addFolloweeTest5(){
         User alice = new User("Alice");
         String expected = "true";
-        String actual = "";
+        String actual = "";2
         try {
             actual += (alice.addFollowee("Foo") && !alice.addFollowee("foo") && alice.getfCount() == 1 && alice.follows("Foo"));
         } catch (Exception e) {

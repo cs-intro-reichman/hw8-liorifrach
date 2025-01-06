@@ -124,15 +124,18 @@ public class Network {
         return counter;
     }
 
-    // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        StringBuilder sb = new StringBuilder("Network:\n");
+        StringBuilder sb = new StringBuilder("Network:");
+        if (userCount == 0) {
+            return sb.toString();  
+        }
+        sb.append("\n"); 
         for (int i = 0; i < userCount; i++) {
             sb.append(users[i].toString());
-            if (i < userCount - 1) {  
+            if (i < userCount - 1) {
                 sb.append("\n");
             }
         }
-        return sb.toString().trim();  // להחזיר את הפלט עם חיתוך שורות ריקות מיותרות
-    }
+        return sb.toString();
+}
 }
