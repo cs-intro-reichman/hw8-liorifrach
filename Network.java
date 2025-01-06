@@ -48,7 +48,7 @@ public class Network {
             return false;
         }
 
-        if(!getUser(name).equals(null)){
+        if(getUser(name) != null){
             return false;
         }
 
